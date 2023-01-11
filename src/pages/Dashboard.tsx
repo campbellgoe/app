@@ -1,6 +1,6 @@
 import React from "react";
 import Title from "../components/Title";
-
+import styles from './BarChart.module.scss'
 type RangeIndexSelectorProps = {
   maxItems: number;
   selectedIndex: number;
@@ -23,9 +23,15 @@ class RangeIndexSelector extends React.Component<RangeIndexSelectorProps> {
   }
 }
 
+type AttributesDataType = {
+  name: string;
+  value: number;
+  unit: string;
+}
+
 type TablePropsType = {
   headings: string[],
-  data: [string, string][]
+  data: AttributesDataType[]
 }
 
 class Table extends React.Component<TablePropsType> {
@@ -47,11 +53,11 @@ class Table extends React.Component<TablePropsType> {
         </thead>
         <tbody>
           {
-            data.map(([name, value]) => {
+            data.map(({name, value, unit}) => {
               return (
                 <tr key={name}>
                   <td className="table-cell">{name}</td>
-                  <td className="table-cell">{value}</td>
+                  <td className="table-cell">{value+unit}</td>
                 </tr>
               )
             })
@@ -62,13 +68,39 @@ class Table extends React.Component<TablePropsType> {
   }
 }
 
+type SimpleBarChartPropsType = {
+  data: AttributesDataType[]
+}
+
+class SimpleBarChart extends React.Component<SimpleBarChartPropsType> {
+  render(){
+    const data = this.props.data
+    const largestValue = data.reduce((largest, { value }) => value > largest ? value : largest, 0)
+    return (
+      <div className={styles.container}>
+        {data.map(({ name, value }) => {
+          return (
+            <>
+            <div
+              className={styles.bar}
+              style={{
+                height: value / largestValue * 100 + '%'
+              }}
+            />
+            <label className={styles.barLabel}>
+              {name}
+            </label>
+            </>
+          )
+        })}
+      </div>
+    )
+  }
+}
+
 type DataType = {
   title: string
-  attributes: {
-    name: string;
-    value: number;
-    unit: string;
-  }[]
+  attributes: AttributesDataType[]
 }
 
 type DashboardStateType = {
@@ -104,13 +136,11 @@ class Dashboard extends React.Component<{}, DashboardStateType> {
     return (
       <div>
         <Title>{title}</Title>
-        <Table headings={['Name', 'Value']} data={
-          attributes.map(
-            ({ name, value, unit }) => {
-              return [name, value+unit]
-            })
-          }
+        <Table
+          headings={['Name', 'Value']}
+          data={attributes}
         />
+        <SimpleBarChart data={attributes} />
         <RangeIndexSelector
         maxItems={data.length}
         setSelectedIndex={(newIndex: number) => {
