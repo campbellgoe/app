@@ -4,7 +4,7 @@ import Title from "../components/Title";
 import WelcomeMessage from "../components/WelcomeMessage";
 import styles from './styles.module.scss';
 
-
+// Login page
 class Login extends React.Component {
   render(){
     return (

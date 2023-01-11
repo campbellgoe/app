@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './WelcomeMessage.module.scss'
-class WelcomeMessage extends React.Component<{ children: JSX.Element[] | string[] }> {
+class WelcomeMessage extends React.Component<{ children: string[] }> {
   render() {
     const children = this.props.children
     return (

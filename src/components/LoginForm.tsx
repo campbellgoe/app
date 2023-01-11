@@ -1,17 +1,12 @@
-import React, { useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import Navigate from '../utils/Navigate';
+type StateType = { username: string; password: string; };
 
-type StateType = { username: string; password: string; }
-
-// I had to add a functional component so I could use the navigate hook
-const Navigate = ({ to }: { to: string }) => {
-  const navigate = useNavigate()
-  useEffect(() => {
-    navigate(to)
-  }, [navigate, to])
-  return <div>Loading</div>
-}
-
+/**
+ * LoginForm react component.
+ * Renders a login form, on submit takes to the /dashboard page.
+ * @component
+ */
 class LoginForm extends React.Component<{}, StateType> {
 
   state = {
