@@ -1,16 +1,24 @@
 import React from "react";
-import styles from '../App.module.scss';
+import LoginForm from "../components/LoginForm";
+import Title from "../components/Title";
+import WelcomeMessage from "../components/WelcomeMessage";
+import styles from './styles.module.scss';
+
 
 class Login extends React.Component {
   render(){
-    const { container, header, main, footer } = styles
     return (
-      <div className={container}>
-        <header className={header}>
-          
-        </header>
-        <main className={main}></main>
-        <footer className={footer}></footer>
+      <div className={styles.container}>
+        <div className="centered">
+          <Title>Login page</Title>
+          <WelcomeMessage>
+            {[
+              'Welcome to Lorem Ipsum.',
+              'Please enter your username and password below to access your dashboard.'
+            ]}
+            </WelcomeMessage>
+          <LoginForm/>
+        </div>
       </div>
     )
   }
