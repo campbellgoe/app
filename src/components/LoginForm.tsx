@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 type StateType = { username: string; password: string; }
 
+// I had to add a functional component so I could use the navigate hook
 const Navigate = ({ to }: { to: string }) => {
   const navigate = useNavigate()
   useEffect(() => {
@@ -32,7 +33,6 @@ class LoginForm extends React.Component<{}, StateType> {
 
   render(){
     const { username, password, submitted } = this.state
-    console.log('submitted', submitted)
     if(submitted){
       return <Navigate to="/dashboard"/>
     }
