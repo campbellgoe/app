@@ -22,16 +22,58 @@ class RangeIndexSelector extends React.Component<RangeIndexSelectorProps> {
     )
   }
 }
+
+type TablePropsType = {
+  headings: string[],
+  data: [string, string][]
+}
+
+class Table extends React.Component<TablePropsType> {
+  render(){
+    const { headings, data } = this.props
+    return (
+      <table>
+        <thead>
+          <tr>
+            {headings.map((heading: string) => (
+              <th
+                key={heading}
+                className="table-heading"
+              >
+                {heading}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            data.map(([name, value]) => {
+              return (
+                <tr key={name}>
+                  <td className="table-cell">{name}</td>
+                  <td className="table-cell">{value}</td>
+                </tr>
+              )
+            })
+          }
+        </tbody>
+      </table>
+    )
+  }
+}
+
+type DataType = {
+  title: string
+  attributes: {
+    name: string;
+    value: number;
+    unit: string;
+  }[]
+}
+
 type DashboardStateType = {
   loaded: boolean;
-  data: {
-    title: string
-    attributes: {
-      name: string;
-      value: number;
-      unit: string;
-    }[]
-  }[];
+  data: DataType[];
   selectedIndex: number
 }
 class Dashboard extends React.Component<{}, DashboardStateType> {
@@ -57,11 +99,18 @@ class Dashboard extends React.Component<{}, DashboardStateType> {
       )
     }
     const { data, selectedIndex } = this.state
-    const item = data[selectedIndex]
+    const item = data[selectedIndex] as DataType
     const { title, attributes } = item
     return (
       <div>
         <Title>{title}</Title>
+        <Table headings={['Name', 'Value']} data={
+          attributes.map(
+            ({ name, value, unit }) => {
+              return [name, value+unit]
+            })
+          }
+        />
         <RangeIndexSelector
         maxItems={data.length}
         setSelectedIndex={(newIndex: number) => {
