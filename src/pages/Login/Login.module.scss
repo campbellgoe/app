@@ -1,5 +1,14 @@
 .container {
   padding: 0.5rem;
+  // center children
+  position: absolute;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%, -50%);
+
+  p {
+    max-width: 400px;
+  }
 }
 
 .loginForm {

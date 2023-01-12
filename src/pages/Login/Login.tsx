@@ -9,16 +9,14 @@ class Login extends React.Component {
   render(){
     return (
       <div className={styles.container}>
-        <div className="centered">
-          <Title>Login page</Title>
-          <WelcomeMessage>
-            {[
-              'Welcome to Lorem Ipsum.',
-              'Please enter your username and password below to access your dashboard.'
-            ]}
-            </WelcomeMessage>
-          <LoginForm className={styles.loginForm} />
-        </div>
+        <Title>Login page</Title>
+        <WelcomeMessage>
+          {[
+            'Welcome to Lorem Ipsum.',
+            'Please enter your username and password below to access your dashboard.'
+          ]}
+          </WelcomeMessage>
+        <LoginForm className={styles.loginForm} />
       </div>
     )
   }
