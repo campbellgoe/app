@@ -1,30 +1,9 @@
 import React from "react";
 import SimpleBarChart from "../../components/BarChart/BarChart";
+import RangeIndexSelector from "../../components/RangeIndexSelector/RangeIndexSelector";
 import Table from "../../components/Table/Table";
 import Title from "../../components/Title";
 import styles from './Dashboard.module.scss'
-
-type RangeIndexSelectorProps = {
-  maxItems: number;
-  selectedIndex: number;
-  setSelectedIndex: (newIndex: number) => void
-}
-
-class RangeIndexSelector extends React.Component<RangeIndexSelectorProps> {
-  render(){
-    const { maxItems, setSelectedIndex, selectedIndex } = this.props
-    return (
-      <input
-        type="range"
-        min={0}
-        max={maxItems - 1}
-        step={1}
-        value={selectedIndex}
-        onChange={e => setSelectedIndex(parseInt(e.target.value))}
-      />
-    )
-  }
-}
 
 export type AttributesDataType = {
   name: string;
@@ -42,6 +21,13 @@ type DashboardStateType = {
   data: DataType[];
   selectedIndex: number
 }
+
+/**
+ * @component Dashboard
+ * @page renders in /dashboard
+ * Renders a title, table, chart and range input which
+ * can slide to show the different items in the data
+ */
 class Dashboard extends React.Component<{}, DashboardStateType> {
 
   state = {

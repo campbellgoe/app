@@ -4,7 +4,11 @@ import Title from "../../components/Title";
 import WelcomeMessage from "../../components/WelcomeMessage";
 import styles from './Login.module.scss';
 
-// Login page
+/**
+ * @component Login
+ * @page renders in /login
+ * Displays a login form along with a title and welcome message / instructions
+ */
 class Login extends React.Component {
   render(){
     return (

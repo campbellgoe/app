@@ -1,11 +1,15 @@
 import React from "react"
-import { AttributesDataType } from "../../pages/Dashboard/Dashboard"
+import type { AttributesDataType } from "../../pages/Dashboard/Dashboard"
 import styles from './BarChart.module.scss'
 
 type SimpleBarChartPropsType = {
   data: AttributesDataType[]
 }
-
+/**
+ * @component BarChart
+ * Renders a simple bar chart
+ * Bar height is determined by dividing the value by the largest number in the data set
+ */
 class SimpleBarChart extends React.Component<SimpleBarChartPropsType> {
   render(){
     const data = this.props.data

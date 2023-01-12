@@ -3,9 +3,8 @@ import Navigate from '../../utils/Navigate';
 type StateType = { username: string; password: string; };
 
 /**
- * LoginForm react component.
+ * @component LoginForm
  * Renders a login form, on submit takes to the /dashboard page.
- * @component
  */
 class LoginForm extends React.Component<{ className: string }, StateType> {
 

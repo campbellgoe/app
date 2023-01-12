@@ -1,11 +1,15 @@
 import React from "react"
-import { AttributesDataType } from "../../pages/Dashboard/Dashboard"
+import type { AttributesDataType } from "../../pages/Dashboard/Dashboard"
 
 type TablePropsType = {
   headings: string[],
   data: AttributesDataType[]
 }
-
+/**
+ * @component Table
+ * Renders a table with headings (an array of strings)
+ * and data for the cells (an array of { name, value, unit })
+ */
 class Table extends React.Component<TablePropsType> {
   render(){
     const { headings, data } = this.props
