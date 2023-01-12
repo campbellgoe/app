@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 
 // I had to add a functional component so I could use the navigate hook
@@ -9,9 +9,15 @@ import { useNavigate } from 'react-router-dom';
  */
 const Navigate = ({ to }: { to: string }) => {
   const navigate = useNavigate()
+  // in case this is rendered multiple times, use a ref to only navigate once
+  const navigating = useRef(false)
   useEffect(() => {
-    navigate(to)
-  }, [navigate, to])
+    if(!navigating.current){
+      navigating.current = true
+      navigate(to)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return null
 }
 

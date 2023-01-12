@@ -1,8 +1,8 @@
 import React from "react";
-import LoginForm from "../components/LoginForm";
-import Title from "../components/Title";
-import WelcomeMessage from "../components/WelcomeMessage";
-import styles from './styles.module.scss';
+import LoginForm from "../../components/Login/LoginForm";
+import Title from "../../components/Title";
+import WelcomeMessage from "../../components/WelcomeMessage";
+import styles from './Login.module.scss';
 
 // Login page
 class Login extends React.Component {
@@ -17,7 +17,7 @@ class Login extends React.Component {
               'Please enter your username and password below to access your dashboard.'
             ]}
             </WelcomeMessage>
-          <LoginForm/>
+          <LoginForm className={styles.loginForm} />
         </div>
       </div>
     )

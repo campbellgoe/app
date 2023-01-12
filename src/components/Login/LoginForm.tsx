@@ -1,5 +1,5 @@
 import React from 'react'
-import Navigate from '../utils/Navigate';
+import Navigate from '../../utils/Navigate';
 type StateType = { username: string; password: string; };
 
 /**
@@ -7,7 +7,7 @@ type StateType = { username: string; password: string; };
  * Renders a login form, on submit takes to the /dashboard page.
  * @component
  */
-class LoginForm extends React.Component<{}, StateType> {
+class LoginForm extends React.Component<{ className: string }, StateType> {
 
   state = {
     username: '',
@@ -32,7 +32,10 @@ class LoginForm extends React.Component<{}, StateType> {
       return <Navigate to="/dashboard"/>
     }
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form
+        onSubmit={this.handleSubmit}
+        className={this.props.className}
+      >
         <input
           type="text"
           placeholder="Username"
